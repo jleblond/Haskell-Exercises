@@ -13,7 +13,9 @@ fun1 :: [Integer] -> Integer
 fun1 [] = 1
 fun1 (x:xs)
   | even x    = (x - 2) * fun1 xs
-  | otherwise = fun1 xs
+  | otherwise = fun1 xs
+
+
 fun1' :: [Integer] ->Integer
 fun1' = product . map (\x -> x - 2) . filter even 
 
@@ -34,16 +36,18 @@ fun2' = sum
 
 -- EXERCISE 3: MORE FOLDS
 
-{- 1. Implement a function xor :: [Bool] -> Bool which returns True if and only if there are an odd number of True values contained in the input list. It does not matter how many False values the input list contains. For example, xor [False, True, False] == Truexor [False, True, False, False, True] == FalseYour solution must be implemented using a fold. -}
+{- 1. Implement a function xor :: [Bool] -> Bool which returns True if and only if there are an odd number of True values contained in the input list. It does not matter how many False values the input list contains. For example, xor [False, True, False] == True
+xor [False, True, False, False, True] == False
+Your solution must be implemented using a fold. -}
 
 xor :: [Bool] -> Bool
 xor xs = foldl (\acc x -> if x == True then not acc else acc) False  xs
 
 
 
-{- 2. Implement map as a fold. That is, complete the definition map’ :: (a -> b) -> [a] -> [b]map’ f = foldr ... in such a way that map’ behaves identically to the standard map function. -}
+{- 2. Implement map as a fold. That is, complete the definition map’ :: (a -> b) -> [a] -> [b]
+map’ f = foldr ... in such a way that map’ behaves identically to the standard map function. -}
 
 map' f = foldr (\y ys -> f y : ys) []
-
 
 
